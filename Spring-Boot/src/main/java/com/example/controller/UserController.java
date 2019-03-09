@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import java.util.List;
-import com.example.Service.UserService;
+import com.example.service.UserService;
 import com.example.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ public class UserController {
     @GetMapping("/users")
     @CrossOrigin(origins = "http://localhost:3000")
     @ResponseBody
-    private List<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
