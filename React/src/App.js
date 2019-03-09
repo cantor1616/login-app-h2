@@ -63,7 +63,7 @@ class App extends React.Component {
   usernameAndPassword(username, password){
     //make sure both username and password are given
     if (!username || !password){
-      this.setState({result: "Username and/or password not entered."});
+      this.setState({result: <div><p/> Username and/or password not entered.</div>});
       return false;
     }
     return true;
@@ -84,7 +84,7 @@ class App extends React.Component {
     .then((response) => {
       console.log(JSON.stringify(response));
       if (this.isEmpty(response.data)){
-        this.setState({result: "No users created yet."});
+        this.setState({result: <div><p/>No users created yet.</div>});
       } else {
         this.setState({result: <div><p/>
           <p>{"Username, Password"}</p>
@@ -104,9 +104,9 @@ class App extends React.Component {
     axios.get(`http://localhost:8080/users/login/${username}/${password}`)
     .then((response) => {
       if (response.data){
-        this.setState({result: "Login successful!"});
+        this.setState({result: <div><p/>Login successful!</div>});
       } else {
-        this.setState({result: "Username does not exist. Please select \"Create\" to make a new account."});
+        this.setState({result: <div><p/>Username does not exist. Please select "Create" to make a new account.</div>});
       }
       console.log(response);
     })
@@ -124,9 +124,9 @@ class App extends React.Component {
     axios.post(`http://localhost:8080/users/add/${username}/${password}`)
     .then((response) => {
       if (response.data){
-        this.setState({result: "New user created successfully!"});
+        this.setState({result: <div><p/>New user, {username}, created successfully!</div>});
       } else {
-        this.setState({result: "Username already exists. Please select \"Sign-In\" to login."});
+        this.setState({result: <div><p/>Username already exists. Please select "Sign-In" to login.</div>});
       }
       console.log(response);
     })
@@ -144,9 +144,9 @@ class App extends React.Component {
     axios.delete(`http://localhost:8080/users/delete/${username}/${password}`)
     .then((response) => {
       if (response.data){
-        this.setState({result: username + " deleted."})
+        this.setState({result: <div><p/>User, {username}, deleted.</div>})
       } else {
-        this.setState({result: "Username and/or password either does not exist or was entered incorrectly."})
+        this.setState({result: <div><p/>Username and/or password either does not exist or was entered incorrectly.</div>})
       }
     })
     .catch(function(error){
